@@ -1,27 +1,25 @@
 # sytac-test
 
-> A Vue.js project
+## Requirements
+1. [Node.js][1] (Better if it would e [version 7.x.x][2])
+2. Npm or [yarn][3] (I use yarn, but npm is also good)
 
-## Build Setup
+Better to launch it on linux or mac os.
+
+Tested in Chrome and Safari.
+
+## Launch
 
 ``` bash
 # install dependencies
 npm install
-
-# serve with hot reload at localhost:8080
 npm run dev
 
-# build for production with minification
-npm run build
-
-# run unit tests
-npm run unit
-
-# run e2e tests
-npm run e2e
-
-# run all tests
-npm test
 ```
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+go to [http://localhost:8080/][4]
+
+[1]: https://nodejs.org/en/
+[2]: https://nodejs.org/dist/v7.2.1/node-v7.2.1.pkg
+[3]: https://yarnpkg.com/
+[4]: http://localhost:8080/
