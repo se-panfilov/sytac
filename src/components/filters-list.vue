@@ -1,22 +1,37 @@
 <template>
   <section class="column is-one-third">
     <div class="control">
-      <span class="select">
-        <select-box :source="types" name="types"></select-box>
-      </span>
-      <span class="select">
-        <select-box :source="colors" name="colors"></select-box>
-      </span>
-      <span class="select">
-        <select-box :source="brands" name="brands"></select-box>
-      </span>
+      <div>
+        <div class="select">
+          <select-box :source="types"
+                      name="types"
+                      v-on:item-selected="onTypeSelect()"
+          ></select-box>
+        </div>
+      </div>
+      <div>
+        <div class="select">
+          <select-box :source="colors"
+                      name="colors"
+                      v-on:item-selected="onColorSelect()"
+          ></select-box>
+        </div>
+      </div>
+      <div>
+        <div class="select">
+          <select-box :source="brands"
+                      name="brands"
+                      v-on:item-selected="onBrandSelect()"
+          ></select-box>
+        </div>
+      </div>
     </div>
   </section>
 </template>
 
 <script>
   import SelectBox from './select-box'
-  
+
   export default {
     name: 'FiltersList',
     data () {
@@ -31,6 +46,15 @@
     methods: {
       getUniq (a) {
         return [...new Set(a)]
+      },
+      onTypeSelect () {
+        console.info('onTypeSelect')
+      },
+      onColorSelect () {
+        console.info('onColorSelect')
+      },
+      onBrandSelect () {
+        console.info('onBrandSelect')
       }
     },
     computed: {

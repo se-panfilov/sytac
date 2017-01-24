@@ -12,7 +12,7 @@
   import MainHeader from './components/main-header'
   import FiltersList from './components/filters-list'
   import VehicleData from './data/traffic_meister'
-  
+
   export default {
     name: 'app',
     data () {
@@ -64,7 +64,7 @@
 <style lang="stylus" rel="stylesheet/stylus" scoped>
   .header
     display block
-  
+
   .row
     display flex
     flex-direction row
@@ -77,16 +77,16 @@
     .list
       flex-grow 2
       flex-shrink 1
-  
+
   .in-out-translate-fade-enter-active, .in-out-translate-fade-leave-active
     transition all 0.5s
-  
+
   .in-out-translate-fade-enter, .in-out-translate-fade-leave-active
     opacity 0
-  
+
   .in-out-translate-fade-enter
     transform translateX(31px)
-  
+
   .in-out-translate-fade-leave-active
     transform translateX(-31px)
 
@@ -97,7 +97,7 @@
     margin 0
     padding 0
     height 100%
-  
+
   body
     background-color #FFF
     color #3c3c3c
@@ -107,11 +107,11 @@
     *
       font-family 'Roboto', sans-serif
       font-weight 500
-  
+
   //#app
   //padding-left 15px
   //padding-right 15px
-  
+
   input[type="search"]
     -moz-appearance textfield
     -webkit-appearance textfield
@@ -119,7 +119,7 @@
     -webkit-box-sizing border-box
     -moz-box-sizing border-box
     box-sizing border-box
-  
+
   article, aside, details, figcaption, figure,
   footer, header, menu, nav, section, canvas
     display block
