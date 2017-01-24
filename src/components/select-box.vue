@@ -1,6 +1,6 @@
 <template>
   <select :name="name">
-    <option value="11">11</option>
+    <option :value="item" v-for="item in source" v-text="item"></option>
   </select>
 </template>
 

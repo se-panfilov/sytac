@@ -1,11 +1,15 @@
 <template>
   <section class="column is-one-third">
     <div class="control">
-      <div class="select">
+      <span class="select">
         <select-box :source="types" name="types"></select-box>
+      </span>
+      <span class="select">
         <select-box :source="colors" name="colors"></select-box>
+      </span>
+      <span class="select">
         <select-box :source="brands" name="brands"></select-box>
-      </div>
+      </span>
     </div>
   </section>
 </template>
@@ -34,7 +38,9 @@
         return this.getUniq(this.source.map(v => v.type))
       },
       colors () {
-        return this.getUniq(this.source.map(v => v.colors))
+        const arrOfArr = this.source.map(v => v.colors)
+        const merged = [].concat.apply([], arrOfArr)
+        return this.getUniq(merged)
       },
       brands () {
         return this.getUniq(this.source.map(v => v.brand))
