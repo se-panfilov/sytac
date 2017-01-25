@@ -55,7 +55,6 @@ describe('filters-list.', () => {
     })
   })
 
-  // TODO (S.Panfilov)
   describe('filterBy.', () => {
     it('invalid params', () => {
       const method = 'filterBy'
@@ -75,27 +74,27 @@ describe('filters-list.', () => {
 
       const arr = [
         {
-          name: `${c.red}_color_1`,
+          name: 'R1',
           color: c.red
         },
         {
-          name: `${c.red}_color_2`,
+          name: 'R2',
           color: c.red
         },
         {
-          name: `${c.green}_color_1`,
+          name: 'G1',
           color: c.green
         },
         {
-          name: `${c.blue}_color_1`,
+          name: 'B1',
           color: c.blue
         },
         {
-          name: `${c.blue}_color_2`,
+          name: 'B2',
           color: c.blue
         },
         {
-          name: `${c.blue}_color_3`,
+          name: 'B3',
           color: c.blue
         }
       ]
@@ -108,14 +107,14 @@ describe('filters-list.', () => {
       expect(greenArr).to.have.length(1)
       expect(blueArr).to.have.length(3)
 
-      expect(redArr.filter(v => v.name === `${c.red}_color_1`)).to.be.have.length(1)
-      expect(redArr.filter(v => v.name === `${c.red}_color_2`)).to.be.have.length(1)
+      expect(redArr.filter(v => v.name === 'R1')).to.be.have.length(1)
+      expect(redArr.filter(v => v.name === 'R2')).to.be.have.length(1)
 
-      expect(greenArr.filter(v => v.name === `${c.green}_color_1`)).to.be.have.length(1)
+      expect(greenArr.filter(v => v.name === 'G1')).to.be.have.length(1)
 
-      expect(blueArr.filter(v => v.name === `${c.blue}_color_1`)).to.be.have.length(1)
-      expect(blueArr.filter(v => v.name === `${c.blue}_color_2`)).to.be.have.length(1)
-      expect(blueArr.filter(v => v.name === `${c.blue}_color_3`)).to.be.have.length(1)
+      expect(blueArr.filter(v => v.name === 'B1')).to.be.have.length(1)
+      expect(blueArr.filter(v => v.name === 'B2')).to.be.have.length(1)
+      expect(blueArr.filter(v => v.name === 'B3')).to.be.have.length(1)
 
     })
   })
@@ -204,11 +203,45 @@ describe('filters-list.', () => {
       expect(() => FiltersList.methods[method](null, '')).to.throw(`${method}: params should exist`)
       expect(() => FiltersList.methods[method](null, '', '')).to.throw(`${method}: params should exist`)
     })
-  })
-  // TODO (S.Panfilov)
-  describe('getFilteredByColorArr.', () => {
-    it('QQQQ', () => {
-      // const result = FiltersList.methods.onSelect()
+
+    it('can return same arr when no filter specified', () => {
+      const c = {
+        red: 'red',
+        green: 'green',
+        blue: 'blue'
+      }
+
+      const arr = [
+        {
+          name: 'R',
+          color: c.red
+        },
+        {
+          name: 'G',
+          color: c.green
+        },
+        {
+          name: 'B',
+          color: c.blue
+        }
+      ]
+
+      const inject = require('!!vue?inject!src/components/filters-list')
+
+      console.info(inject)
+
+      const ComponentAWithMock = inject({
+        // '../services/message': {
+        data: {
+          brand: 'asdasd'
+        }
+      })
+
+      console.info(ComponentAWithMock.data())
+      // console.info(FiltersList.data({some:'wqe'}))
+      // console.info(FiltersList.data())
+      // FiltersList.methods.getFilteredArr(arr, 'color')
     })
   })
+
 })
