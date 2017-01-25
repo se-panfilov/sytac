@@ -46,14 +46,14 @@ let trafficMeister
     },
     {
       id: 7,
-      type: 'train',
+      type: 'airplane',
       brand: 'Prairie 2-6-2',
       colors: ['red', 'white', 'grey'],
       img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/CFR_Steam_locomotive.jpg/600px-CFR_Steam_locomotive.jpg'
     },
     {
       id: 8,
-      type: 'train',
+      type: 'airplane',
       brand: 'EMD GP40',
       colors: ['black', 'grey', 'white'],
       img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/EMD_GP40_B%26M_339_Wells_Maine.jpg/600px-EMD_GP40_B%26M_339_Wells_Maine.jpg'
@@ -67,7 +67,7 @@ let trafficMeister
     },
     {
       id: 10,
-      type: 'car',
+      type: 'airplane',
       brand: 'Ferrari F40',
       colors: ['red', 'yellow'],
       img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/F40ferarri20090509.jpg/560px-F40ferarri20090509.jpg'
