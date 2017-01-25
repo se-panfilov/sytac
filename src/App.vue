@@ -37,7 +37,6 @@
     },
     methods: {
       onChanged (val) {
-        console.info(val)
         this.selected = val
       },
       loadData () {
