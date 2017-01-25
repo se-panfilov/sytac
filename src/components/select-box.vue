@@ -1,21 +1,28 @@
 <template>
   <div class="control">
-    <label class="label" v-text="label"></label>
-    <div class="select">
-      <select :name="name" @change="onSelect">
-        <option value="" selected></option>
-        <option :value="item" v-for="item in source" v-text="item"></option>
-      </select>
+    <label class="label" :for="name" v-text="label"></label>
+    <div class="control is-grouped">
+      <div class="control">
+        <div class="select">
+          <select :name="name" id="name" v-model="model" @change="onSelect">
+            <!--<option value="" selected></option>-->
+            <option :value="item" v-for="item in source" v-text="item"></option>
+          </select>
+        </div>
+      </div>
+      <div class="control">
+        <button type="button" class="button" @click="onReset">x</button>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
   export default {
-    name: 'FiltersList',
+    name: 'SelectBox',
     data () {
       return {
-//        model: null
+        model: null
       }
     },
     props: {
@@ -36,6 +43,9 @@
       },
       onSelect (val) {
         this.$emit('item-selected', val)
+      },
+      onReset () {
+        this.model = null
       }
     }
   }

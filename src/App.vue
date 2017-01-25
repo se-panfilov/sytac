@@ -1,9 +1,18 @@
 <template>
   <div id="app">
     <main-header class="header"></main-header>
-    <transition name="in-out-translate-fade" mode="out-in" appear>
-      <filters-list :source="vehicleData"></filters-list>
-    </transition>
+    <div class="container">
+      <div class="columns">
+        <section class="column is-one-third">
+          <transition name="in-out-translate-fade" mode="out-in" appear>
+            <filters-list :source="vehicleData" v-on:changed="onChanged"></filters-list>
+          </transition>
+        </section>
+        <section class="column">
+          <details-view :selected="selected"></details-view>
+        </section>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -11,12 +20,14 @@
   import 'bulma/css/bulma.css'
   import MainHeader from './components/main-header'
   import FiltersList from './components/filters-list'
+  import DetailsView from './components/details-view'
   import VehicleData from './data/traffic_meister'
 
   export default {
     name: 'app',
     data () {
       return {
+        selected: {},
         vehicleData: []
       }
     },
@@ -24,15 +35,10 @@
       this.loadData()
     },
     methods: {
-//      setTextFilter (val) {
-//        this.text = val
-//      },
-//      setCategoryFilter (val) {
-//        this.category = val
-//      },
-//      setVendorFilter (val) {
-//        this.vendor = val
-//      }
+      onChanged (val) {
+        console.info(val)
+        this.selected = val
+      },
       loadData () {
         return this.getSourceData().then(this.onDataSuccess, this.onDataError)
       },
@@ -56,7 +62,8 @@
     },
     components: {
       FiltersList,
-      MainHeader
+      MainHeader,
+      DetailsView
     }
   }
 </script>

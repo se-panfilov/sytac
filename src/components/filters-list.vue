@@ -1,5 +1,5 @@
 <template>
-  <section class="column is-one-third">
+  <section>
     <select-box :source="types"
                 name="types"
                 label="Types"
@@ -44,6 +44,7 @@
       },
       onSelect (event, type) {
         this.filter[type] = event.target.value
+        this.$emit('changed', this.filter)
       },
       filterBy (arr, val, field) {
         return arr.filter(v => {
@@ -68,7 +69,6 @@
       colors () {
         const arrOfArr = this.filteredColors.map(v => v.colors)
         const mergedArr = [].concat.apply([], arrOfArr)
-        console.info(this.getUniq(mergedArr))
         return this.getUniq(mergedArr)
       },
       brands () {
