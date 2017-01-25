@@ -359,7 +359,7 @@ describe('filters-list.', () => {
           },
           two: {
             name: 'name2',
-            colors: ['color2a','color2b','color2c']
+            colors: ['color2a', 'color2b', 'color2c']
           },
           three: {
             name: 'name3',
@@ -389,24 +389,63 @@ describe('filters-list.', () => {
       })
     })
 
-    // TODO (S.Panfilov)
     describe('filteredTypes.', () => {
-      it('QQQ', () => {
+      it('can get types array', () => {
+        const mockThis = {
+          source: {},
+          expectedArgs: [],
+          callCount: 0,
+          getFilteredArr (...rest) {
+            this.callCount += this.callCount
+            this.expectedArgs.push(rest)
+            return []
+          }
+        }
 
+        FiltersList.computed.filteredTypes.call(mockThis)
+
+        expect(mockThis.expectedArgs[0]).deep.equal([{}, 'color', 'filterByColors'])
+        expect(mockThis.expectedArgs[1]).deep.equal([[], 'brand'])
       })
     })
 
-    // TODO (S.Panfilov)
     describe('filteredBrands.', () => {
-      it('QQQ', () => {
+      it('can get brands array', () => {
+        const mockThis = {
+          source: {},
+          expectedArgs: [],
+          callCount: 0,
+          getFilteredArr (...rest) {
+            this.callCount += this.callCount
+            this.expectedArgs.push(rest)
+            return []
+          }
+        }
 
+        FiltersList.computed.filteredBrands.call(mockThis)
+
+        expect(mockThis.expectedArgs[0]).deep.equal([{}, 'color', 'filterByColors'])
+        expect(mockThis.expectedArgs[1]).deep.equal([[], 'type'])
       })
     })
 
-    // TODO (S.Panfilov)
     describe('filteredColors.', () => {
-      it('QQQ', () => {
+      it('can get colors array', () => {
+        const mockThis = {
+          source: {},
+          expectedArgs: [],
+          callCount: 0,
+          getFilteredArr (...rest) {
+            this.callCount += this.callCount
+            this.expectedArgs.push(rest)
+            return []
+          }
+        }
 
+        FiltersList.computed.filteredColors.call(mockThis)
+
+        expect(mockThis.expectedArgs[0]).deep.equal([{}, 'type', 'filterBy'])
+        expect(mockThis.expectedArgs[1]).deep.equal([[], 'brand', 'filterBy'])
       })
     })
 
