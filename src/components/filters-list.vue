@@ -61,7 +61,7 @@
     },
     methods: {
       getUniq (arr) {
-//        if (!arr) throw new Error(`getUniq: array is mandatory`)
+        if (!arr) throw new Error(`getUniq: array is mandatory`)
         return [...new Set(arr)]
       },
       onSelect (event, type) {
@@ -73,16 +73,15 @@
         return arr.filter(v => v[field] === val)
       },
       filterByColors (arr, val) {
-//        if (!arr || !val) throw new Error(`filterByColors: params should exist`)
+        if (!arr || !val) throw new Error(`filterByColors: params should exist`)
         return arr.filter(v => v.colors.indexOf(val) > -1)
       },
-      filterColorsBy (arr, val, field) {
+//      filterColorsBy (arr, val, field) {
 //        if (!arr || !val || !field) throw new Error(`filterColorsBy: params should exist`)
-        console.warn(val)
-        return arr.filter(v => v[field] === val)
-      },
+//        return arr.filter(v => v[field] === val)
+//      },
       getFilteredArr (arr, field, method = 'filterBy') {
-//        if (!arr || !field) throw new Error(`getFilteredArr: params should exist`)
+        if (!arr || !field) throw new Error(`getFilteredArr: params should exist`)
         return (this.filter[field]) ? this[method](arr, this.filter[field], field) : arr
       }
     },
@@ -111,7 +110,7 @@
       },
       filteredColors () {
         const filteredArr = this.getFilteredArr(this.source, 'type', 'filterBy')
-        return this.getFilteredArr(filteredArr, 'brand', 'filterColorsBy')
+        return this.getFilteredArr(filteredArr, 'brand', 'filterBy')
       }
     },
     components: {

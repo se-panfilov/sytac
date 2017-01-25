@@ -194,18 +194,6 @@ describe('filters-list.', () => {
   })
 
   // TODO (S.Panfilov)
-  describe('filterColorsBy.', () => {
-    it('invalid params', () => {
-      const method = 'filterColorsBy'
-      expect(() => FiltersList.methods[method]()).to.throw(`${method}: params should exist`)
-      expect(() => FiltersList.methods[method]([])).to.throw(`${method}: params should exist`)
-      expect(() => FiltersList.methods[method]([], null, null)).to.throw(`${method}: params should exist`)
-      expect(() => FiltersList.methods[method](null, '', null)).to.throw(`${method}: params should exist`)
-      expect(() => FiltersList.methods[method](null, null, '')).to.throw(`${method}: params should exist`)
-    })
-  })
-
-  // TODO (S.Panfilov)
   describe('getFilteredArr.', () => {
     it('invalid params', () => {
       const method = 'getFilteredArr'
