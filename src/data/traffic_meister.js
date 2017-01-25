@@ -97,9 +97,7 @@ let trafficMeister
       throw new Error('Callback not defined')
     }
     setTimeout(() => {
-      // (S.Panfilov) in this case error will be occurs more often rather than '=== 2'
-      if (Math.floor(Math.random() * 20) > 10) {
-      // if (Math.floor(Math.random() * 20) === 2) {
+      if (Math.floor(Math.random() * 20) === 2) {
         cb('Fetch data error')
       } else {
         cb(null, data)
