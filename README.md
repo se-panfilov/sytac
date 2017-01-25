@@ -17,6 +17,12 @@ npm run dev
 
 ```
 
+##Launch unit tests
+``` bash
+npm run unit
+```
+
+
 go to [http://localhost:8080/][4]
 
 [1]: https://nodejs.org/en/

@@ -1,14 +1,20 @@
 <template>
-  <div class="control">
-    <label class="label" :for="name" v-text="label"></label>
-    <div class="control has-addons">
-      <div class="select is-expanded">
-        <select :name="name" id="name" v-model="model" @change="onSelect">
-          <!--<option value="" selected></option>-->
-          <option :value="item" v-for="item in source" v-text="item"></option>
+  <div class="control select-box">
+    <label class="label select-box__label" :for="name" v-text="label"></label>
+    <div class="control has-addons select-box__ctrl-group">
+      <div class="select is-expanded select-box__select-container">
+        <select :name="name"
+                id="name"
+                class="select-box__select"
+                v-model="model"
+                @change="onSelect">
+          <option :value="item"
+                  class="select-box__option"
+                  v-for="item in source"
+                  v-text="item"></option>
         </select>
       </div>
-      <button type="button" class="button" @click="onReset">x</button>
+      <button type="button" class="button select-box__button" @click="onReset">x</button>
     </div>
   </div>
 </template>
