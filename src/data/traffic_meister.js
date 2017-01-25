@@ -6,7 +6,7 @@ let trafficMeister
       id: 1,
       type: 'car',
       brand: 'Bugatti Veyron',
-      colors: ['red', 'black'],
+      colors: ['red', 'black', 'pink'],
       img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Bugatti_Veyron_16.4_%E2%80%93_Frontansicht_%281%29%2C_5._April_2012%2C_D%C3%BCsseldorf.jpg/520px-Bugatti_Veyron_16.4_%E2%80%93_Frontansicht_%281%29%2C_5._April_2012%2C_D%C3%BCsseldorf.jpg'
     },
     {
@@ -27,7 +27,7 @@ let trafficMeister
       id: 4,
       type: 'airplane',
       brand: 'Canadair North Star',
-      colors: ['red', 'blue', 'yellow', 'green'],
+      colors: ['red', 'blue', 'yellow', 'green', 'pomegranate'],
       img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/BOAC_C-4_Argonaut_Heathrow_1954.jpg/600px-BOAC_C-4_Argonaut_Heathrow_1954.jpg'
     },
     {
@@ -46,28 +46,28 @@ let trafficMeister
     },
     {
       id: 7,
-      type: 'airplane',
+      type: 'train',
       brand: 'Prairie 2-6-2',
       colors: ['red', 'white', 'grey'],
       img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/CFR_Steam_locomotive.jpg/600px-CFR_Steam_locomotive.jpg'
     },
     {
       id: 8,
-      type: 'airplane',
+      type: 'train',
       brand: 'EMD GP40',
-      colors: ['black', 'grey', 'white'],
+      colors: ['black', 'grey', 'white', 'azure'],
       img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/EMD_GP40_B%26M_339_Wells_Maine.jpg/600px-EMD_GP40_B%26M_339_Wells_Maine.jpg'
     },
     {
       id: 9,
       type: 'train',
       brand: 'Amer 4-4-0',
-      colors: ['red', 'black'],
+      colors: ['red', 'black', 'grey', 'wheat', 'orange', 'azure'],
       img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/440woodcut.jpg/600px-440woodcut.jpg'
     },
     {
       id: 10,
-      type: 'airplane',
+      type: 'car',
       brand: 'Ferrari F40',
       colors: ['red', 'yellow'],
       img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/F40ferarri20090509.jpg/560px-F40ferarri20090509.jpg'
@@ -97,12 +97,11 @@ let trafficMeister
       throw new Error('Callback not defined')
     }
     setTimeout(() => {
-      // TODO (S.Panfilov) revert
-      // if (Math.floor(Math.random() * 20) === 2) {
-      //   cb('Fetch data error')
-      // } else {
-      cb(null, data)
-      // }
+      if (Math.floor(Math.random() * 20) > 10) {
+        cb('Fetch data error')
+      } else {
+        cb(null, data)
+      }
     }, 1000)
   }
 
