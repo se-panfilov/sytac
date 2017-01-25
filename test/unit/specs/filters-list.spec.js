@@ -1,5 +1,6 @@
 import FiltersList from 'src/components/filters-list'
 import {expect} from 'chai'
+import sinon from 'sinon'
 
 describe('filters-list.', () => {
   describe('getUniq.', () => {
@@ -192,7 +193,6 @@ describe('filters-list.', () => {
     })
   })
 
-  // TODO (S.Panfilov)
   describe('getFilteredArr.', () => {
     it('invalid params', () => {
       const method = 'getFilteredArr'
@@ -226,22 +226,65 @@ describe('filters-list.', () => {
         }
       ]
 
-      const inject = require('!!vue?inject!src/components/filters-list')
 
-      console.info(inject)
-
-      const ComponentAWithMock = inject({
-        // '../services/message': {
-        data: {
-          brand: 'asdasd'
+      const mockSource = {
+        filter: {
+          color: null
         }
-      })
+      }
 
-      console.info(ComponentAWithMock.data())
-      // console.info(FiltersList.data({some:'wqe'}))
-      // console.info(FiltersList.data())
-      // FiltersList.methods.getFilteredArr(arr, 'color')
+      const resultArr = FiltersList.methods.getFilteredArr.call(mockSource, arr, 'color')
+      expect(resultArr).to.have.length(arr.length)
+      expect(resultArr[0]).to.deep.equal(arr[0])
+      expect(resultArr[1]).to.deep.equal(arr[1])
+      expect(resultArr[2]).to.deep.equal(arr[2])
     })
+
+    it('should call filterBy by default', () => {
+      // TODO (S.Panfilov) refactor
+      const c = {
+        red: 'red',
+        green: 'green',
+        blue: 'blue'
+      }
+
+      const arr = [
+        {
+          name: 'R',
+          color: c.red
+        },
+        {
+          name: 'G',
+          color: c.green
+        },
+        {
+          name: 'B',
+          color: c.blue
+        }
+      ]
+
+      const mockSource = {
+        filter: {
+          color: c.red
+        },
+        filterBy (arr, val, field) {
+          return FiltersList.methods.filterBy(arr, val, field)
+        }
+      }
+
+      const resultArr = FiltersList.methods.getFilteredArr.call(mockSource, arr, 'color')
+      const expectedArr = FiltersList.methods.filterBy(arr, c.red, 'color')
+      expect(resultArr).to.have.length(expectedArr.length)
+      expect(resultArr).to.deep.equal(expectedArr)
+      expect(resultArr[0]).to.deep.equal(arr[0])
+
+      // mockSource.filterBy = sinon.spy()
+      // FiltersList.methods.getFilteredArr.call(mockSource, arr, 'color')
+      // expect(mockSource.filterBy ).to.have.property('callCount', 1);
+    })
+
   })
+
+
 
 })

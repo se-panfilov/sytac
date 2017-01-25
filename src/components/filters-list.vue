@@ -48,7 +48,7 @@
       return {
         filter: {
           type: null,
-          brand: null,
+          brand: [],
           color: null
         }
       }
@@ -78,7 +78,6 @@
       },
       getFilteredArr (arr, field, method = 'filterBy') {
         if (!arr || !field) throw new Error(`getFilteredArr: params should exist`)
-        console.info(this)
         return (this.filter[field]) ? this[method](arr, this.filter[field], field) : arr
       }
     },
