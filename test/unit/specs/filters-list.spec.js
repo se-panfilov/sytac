@@ -6,17 +6,17 @@ describe('filters-list.', () => {
     it('can get array with uniq vals by getUniq', () => {
       const c = {
         red: 'red',
-        white: 'white',
+        green: 'green',
         blue: 'blue'
       }
 
-      const arr = [c.red, c.white, c.blue, c.red, c.white]
+      const arr = [c.red, c.green, c.blue, c.red, c.green]
       const result = FiltersList.methods.getUniq(arr)
       const expectedLength = Object.keys(c).length
 
       expect(result).to.have.length(expectedLength)
       expect(result.indexOf(c.red) > -1).to.be.true
-      expect(result.indexOf(c.white) > -1).to.be.true
+      expect(result.indexOf(c.green) > -1).to.be.true
       expect(result.indexOf(c.blue) > -1).to.be.true
     })
 
@@ -69,7 +69,7 @@ describe('filters-list.', () => {
     it('can filter array of objects by value', () => {
       const c = {
         red: 'red',
-        white: 'white',
+        green: 'green',
         blue: 'blue'
       }
 
@@ -83,8 +83,8 @@ describe('filters-list.', () => {
           color: c.red
         },
         {
-          name: `${c.white}_color_1`,
-          color: c.white
+          name: `${c.green}_color_1`,
+          color: c.green
         },
         {
           name: `${c.blue}_color_1`,
@@ -97,21 +97,21 @@ describe('filters-list.', () => {
         {
           name: `${c.blue}_color_3`,
           color: c.blue
-        },
+        }
       ]
 
       const redArr = FiltersList.methods.filterBy(arr, c.red, 'color')
       const blueArr = FiltersList.methods.filterBy(arr, c.blue, 'color')
-      const whiteArr = FiltersList.methods.filterBy(arr, c.white, 'color')
+      const greenArr = FiltersList.methods.filterBy(arr, c.green, 'color')
 
       expect(redArr).to.have.length(2)
-      expect(whiteArr).to.have.length(1)
+      expect(greenArr).to.have.length(1)
       expect(blueArr).to.have.length(3)
 
       expect(redArr.filter(v => v.name === `${c.red}_color_1`)).to.be.have.length(1)
       expect(redArr.filter(v => v.name === `${c.red}_color_2`)).to.be.have.length(1)
 
-      expect(whiteArr.filter(v => v.name === `${c.white}_color_1`)).to.be.have.length(1)
+      expect(greenArr.filter(v => v.name === `${c.green}_color_1`)).to.be.have.length(1)
 
       expect(blueArr.filter(v => v.name === `${c.blue}_color_1`)).to.be.have.length(1)
       expect(blueArr.filter(v => v.name === `${c.blue}_color_2`)).to.be.have.length(1)
@@ -120,7 +120,6 @@ describe('filters-list.', () => {
     })
   })
 
-  // TODO (S.Panfilov)
   describe('filterByColors.', () => {
     it('invalid params', () => {
       const method = 'filterByColors'
@@ -128,6 +127,69 @@ describe('filters-list.', () => {
       expect(() => FiltersList.methods[method]([])).to.throw(`${method}: params should exist`)
       expect(() => FiltersList.methods[method]([], null)).to.throw(`${method}: params should exist`)
       expect(() => FiltersList.methods[method](null, '')).to.throw(`${method}: params should exist`)
+    })
+
+    it('can filter array of objects by value', () => {
+      const c = {
+        red: 'red',
+        green: 'green',
+        blue: 'blue'
+      }
+
+      const arr = [
+        {
+          name: `RGB`,
+          colors: [c.red, c.green, c.blue]
+        },
+        {
+          name: `RB`,
+          colors: [c.red, c.blue]
+        },
+        {
+          name: `R`,
+          colors: [c.red]
+        },
+        {
+          name: `G`,
+          colors: [c.green]
+        },
+        {
+          name: `B`,
+          colors: [c.blue]
+        },
+        {
+          name: `BR`,
+          colors: [c.blue, c.red]
+        },
+        {
+          name: `GR`,
+          colors: [c.green, c.red]
+        }
+
+      ]
+
+      const redArr = FiltersList.methods.filterByColors(arr, c.red)
+      const blueArr = FiltersList.methods.filterByColors(arr, c.blue)
+      const greenArr = FiltersList.methods.filterByColors(arr, c.green)
+
+      expect(redArr).to.have.length(5)
+      expect(greenArr).to.have.length(3)
+      expect(blueArr).to.have.length(4)
+
+      expect(redArr.filter(v => v.name === 'RGB')).to.be.have.length(1)
+      expect(redArr.filter(v => v.name === 'GR')).to.be.have.length(1)
+      expect(redArr.filter(v => v.name === 'BR')).to.be.have.length(1)
+      expect(redArr.filter(v => v.name === 'RB')).to.be.have.length(1)
+      expect(redArr.filter(v => v.name === 'R')).to.be.have.length(1)
+
+      expect(greenArr.filter(v => v.name === 'RGB')).to.be.have.length(1)
+      expect(greenArr.filter(v => v.name === 'GR')).to.be.have.length(1)
+      expect(greenArr.filter(v => v.name === 'G')).to.be.have.length(1)
+
+      expect(blueArr.filter(v => v.name === 'RGB')).to.be.have.length(1)
+      expect(blueArr.filter(v => v.name === 'B')).to.be.have.length(1)
+      expect(blueArr.filter(v => v.name === 'BR')).to.be.have.length(1)
+      expect(blueArr.filter(v => v.name === 'RB')).to.be.have.length(1)
     })
   })
 
