@@ -1,6 +1,5 @@
 import FiltersList from 'src/components/filters-list'
 import {expect} from 'chai'
-import sinon from 'sinon'
 
 describe('filters-list.', () => {
   describe('getUniq.', () => {
@@ -49,10 +48,32 @@ describe('filters-list.', () => {
     })
   })
 
-  // TODO (S.Panfilov)
   describe('onSelect.', () => {
-    it('QQQQ', () => {
-      // const result = FiltersList.methods.onSelect()
+    it('emit event', () => {
+
+      const mockThis = {
+        filter: {
+          type: 'type'
+        },
+        expectedArgs: null,
+        $emit (...rest) {
+          this.expectedArgs = rest
+        }
+      }
+
+      const event = {
+        target: {
+          value: 'myVal'
+        }
+      }
+
+      const expectedEventName = 'changed'
+
+      FiltersList.methods.onSelect.call(mockThis, event, 'type')
+
+      expect(mockThis.filter.type).equal('myVal')
+      expect(mockThis.expectedArgs[0]).equal(expectedEventName)
+      expect(mockThis.expectedArgs[1]).deep.equal(mockThis.filter)
     })
   })
 
@@ -267,9 +288,7 @@ describe('filters-list.', () => {
         filter: {
           color: c.red
         },
-        filterBy (arr, val, field) {
-          return FiltersList.methods.filterBy(arr, val, field)
-        }
+        filterBy: FiltersList.methods.filterBy
       }
 
       const resultArr = FiltersList.methods.getFilteredArr.call(mockSource, arr, 'color')
@@ -277,14 +296,9 @@ describe('filters-list.', () => {
       expect(resultArr).to.have.length(expectedArr.length)
       expect(resultArr).to.deep.equal(expectedArr)
       expect(resultArr[0]).to.deep.equal(arr[0])
-
-      // mockSource.filterBy = sinon.spy()
-      // FiltersList.methods.getFilteredArr.call(mockSource, arr, 'color')
-      // expect(mockSource.filterBy ).to.have.property('callCount', 1);
     })
 
   })
-
 
 
 })
