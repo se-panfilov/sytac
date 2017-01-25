@@ -5,16 +5,19 @@
                 label="Types"
                 v-on:item-selected="onSelect($event, 'type')"
     ></select-box>
+    <span v-text="types.length"></span>
     <select-box :source="brands"
                 name="brands"
                 label="Brands"
                 v-on:item-selected="onSelect($event, 'brand')"
     ></select-box>
+    <span v-text="brands.length"></span>
     <select-box :source="colors"
                 name="colors"
                 label="Colors"
                 v-on:item-selected="onSelect($event, 'color')"
     ></select-box>
+    <span v-text="colors.length"></span>
   </section>
 </template>
 
@@ -47,19 +50,24 @@
         this.$emit('changed', this.filter)
       },
       filterBy (arr, val, field) {
-        return arr.filter(v => {
-//          console.info(`${v} === ${val}`)
-//          if (field) return v[field] === val
-          return v[field] === val
-//          return v === val
-        })
+        return arr.filter(v => v[field] === val)
+      },
+      filterByColors (arr, val) {
+        return arr.filter(v => v.colors === val.indexOf(val) > -1)
       },
       filterColorsBy (arr, val, field) {
-        return arr.filter(v => {
-//          console.info(field)
-//          console.info(v)
-          return v[field] === val
-        })
+        return arr.filter(v => v[field] === val)
+      },
+      getFilteredByColorArr () {
+//        return (this.filter.color) ? this.filterByColors(this.source, this.filter.color) : this.source
+        return this.getFilteredArr(this.source, 'color', 'filterByColors')
+      },
+      getColorsFilteredByTypeArr () {
+//        return (this.filter.type) ? this.filterColorsBy(this.source, this.filter.type, 'type') : this.source
+        return this.getFilteredArr(this.source, 'type', 'filterColorsBy')
+      },
+      getFilteredArr (arr, field, method = 'filterBy') {
+        return (this.filter[field]) ? this[method](arr, this.filter[field], field) : arr
       }
     },
     computed: {
@@ -73,27 +81,23 @@
       },
       brands () {
         return this.getUniq(this.filteredBrands.map(v => v.brand))
-//        return this.getUniq(this.source.map(v => v.brand))
       },
       filteredTypes () {
-//        return this.filterBy(this.source, this.filter.type, 'type')
-//        const filteredByColorArr = (this.filter.color) ? this.filterBy(this.source, this.filter.color, 'color') : this.source
-        const filteredByColorArr = this.source
-        const result = (this.filter.brand) ? this.filterBy(filteredByColorArr, this.filter.brand, 'brand') : filteredByColorArr
+        const filteredByColorArr = this.getFilteredByColorArr()
+        const result = this.getFilteredArr(filteredByColorArr, 'brand')
+//        console.info(result)
         return result
       },
       filteredColors () {
-//        const arrOfArr = this.source.map(v => v.colors)
-//        const mergedArr = [].concat.apply([], arrOfArr)
-//        return this.filterBy(this.source, this.filter.color, 'color')
-        const filteredByTypeArr = (this.filter.type) ? this.filterColorsBy(this.source, this.filter.type, 'type') : this.source
-        const result = (this.filter.brand) ? this.filterColorsBy(filteredByTypeArr, this.filter.brand, 'brand') : filteredByTypeArr
-        console.info(result)
+        const filteredByTypeArr = this.getColorsFilteredByTypeArr()
+        const result = this.getFilteredArr(filteredByTypeArr, 'brand', 'filterColorsBy')
+//        console.info(result)
         return result
       },
       filteredBrands () {
-        const filteredByColorArr = (this.filter.color) ? this.filterBy(this.source, this.filter.color, 'color') : this.source
-        const result = (this.filter.type) ? this.filterBy(filteredByColorArr, this.filter.type, 'type') : filteredByColorArr
+        const filteredByColorArr = this.getFilteredByColorArr()
+        const result = this.getFilteredArr(filteredByColorArr, 'type')
+//        console.info(result)
         return result
       }
     },
