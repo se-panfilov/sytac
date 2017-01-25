@@ -34,9 +34,6 @@
       }
     },
     methods: {
-      getUniq (a) {
-        return [...new Set(a)]
-      },
       onSelect (val) {
         this.$emit('item-selected', val)
       },

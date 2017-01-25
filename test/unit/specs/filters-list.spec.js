@@ -46,6 +46,66 @@ describe('filters-list.', () => {
     it('can\'t handle no params', () => {
       expect(() => FiltersList.methods.getUniq()).to.throw('getUniq: array is mandatory')
     })
+  })
 
+  // TODO (S.Panfilov)
+  describe('onSelect.', () => {
+    it('QQQQ', () => {
+      // const result = FiltersList.methods.onSelect()
+    })
+  })
+
+  // TODO (S.Panfilov)
+  describe('filterBy.', () => {
+    it('invalid params', () => {
+      const method = 'filterBy'
+      expect(() => FiltersList.methods[method]()).to.throw(`${method}: params should exist`)
+      expect(() => FiltersList.methods[method]([])).to.throw(`${method}: params should exist`)
+      expect(() => FiltersList.methods[method]([], null, null)).to.throw(`${method}: params should exist`)
+      expect(() => FiltersList.methods[method](null, '', null)).to.throw(`${method}: params should exist`)
+      expect(() => FiltersList.methods[method](null, null, '')).to.throw(`${method}: params should exist`)
+    })
+  })
+
+  // TODO (S.Panfilov)
+  describe('filterByColors.', () => {
+    it('invalid params', () => {
+      const method = 'filterByColors'
+      expect(() => FiltersList.methods[method]()).to.throw(`${method}: params should exist`)
+      expect(() => FiltersList.methods[method]([])).to.throw(`${method}: params should exist`)
+      expect(() => FiltersList.methods[method]([], null)).to.throw(`${method}: params should exist`)
+      expect(() => FiltersList.methods[method](null, '')).to.throw(`${method}: params should exist`)
+    })
+  })
+
+  // TODO (S.Panfilov)
+  describe('filterColorsBy.', () => {
+    it('invalid params', () => {
+      const method = 'filterColorsBy'
+      expect(() => FiltersList.methods[method]()).to.throw(`${method}: params should exist`)
+      expect(() => FiltersList.methods[method]([])).to.throw(`${method}: params should exist`)
+      expect(() => FiltersList.methods[method]([], null, null)).to.throw(`${method}: params should exist`)
+      expect(() => FiltersList.methods[method](null, '', null)).to.throw(`${method}: params should exist`)
+      expect(() => FiltersList.methods[method](null, null, '')).to.throw(`${method}: params should exist`)
+    })
+  })
+
+  // TODO (S.Panfilov)
+  describe('getFilteredArr.', () => {
+    it('invalid params', () => {
+      const method = 'getFilteredArr'
+      expect(() => FiltersList.methods[method]()).to.throw(`${method}: params should exist`)
+      expect(() => FiltersList.methods[method]([])).to.throw(`${method}: params should exist`)
+      expect(() => FiltersList.methods[method]([], null)).to.throw(`${method}: params should exist`)
+      expect(() => FiltersList.methods[method]([], null, '')).to.throw(`${method}: params should exist`)
+      expect(() => FiltersList.methods[method](null, '')).to.throw(`${method}: params should exist`)
+      expect(() => FiltersList.methods[method](null, '', '')).to.throw(`${method}: params should exist`)
+    })
+  })
+  // TODO (S.Panfilov)
+  describe('getFilteredByColorArr.', () => {
+    it('QQQQ', () => {
+      // const result = FiltersList.methods.onSelect()
+    })
   })
 })

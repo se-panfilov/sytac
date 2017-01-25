@@ -69,15 +69,19 @@
         this.$emit('changed', this.filter)
       },
       filterBy (arr, val, field) {
+        if (!arr || !val || !field) throw new Error(`filterBy: params should exist`)
         return arr.filter(v => v[field] === val)
       },
       filterByColors (arr, val) {
+        if (!arr || !val) throw new Error(`filterByColors: params should exist`)
         return arr.filter(v => v.colors.indexOf(val) > -1)
       },
       filterColorsBy (arr, val, field) {
+        if (!arr || !val || !field) throw new Error(`filterColorsBy: params should exist`)
         return arr.filter(v => v[field] === val)
       },
       getFilteredArr (arr, field, method = 'filterBy') {
+        if (!arr || !field) throw new Error(`getFilteredArr: params should exist`)
         return (this.filter[field]) ? this[method](arr, this.filter[field], field) : arr
       },
       getFilteredByColorArr () {
