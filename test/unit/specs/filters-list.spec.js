@@ -65,6 +65,59 @@ describe('filters-list.', () => {
       expect(() => FiltersList.methods[method](null, '', null)).to.throw(`${method}: params should exist`)
       expect(() => FiltersList.methods[method](null, null, '')).to.throw(`${method}: params should exist`)
     })
+
+    it('can filter array of objects by value', () => {
+      const c = {
+        red: 'red',
+        white: 'white',
+        blue: 'blue'
+      }
+
+      const arr = [
+        {
+          name: `${c.red}_color_1`,
+          color: c.red
+        },
+        {
+          name: `${c.red}_color_2`,
+          color: c.red
+        },
+        {
+          name: `${c.white}_color_1`,
+          color: c.white
+        },
+        {
+          name: `${c.blue}_color_1`,
+          color: c.blue
+        },
+        {
+          name: `${c.blue}_color_2`,
+          color: c.blue
+        },
+        {
+          name: `${c.blue}_color_3`,
+          color: c.blue
+        },
+      ]
+
+      const redArr = FiltersList.methods.filterBy(arr, c.red, 'color')
+      const blueArr = FiltersList.methods.filterBy(arr, c.blue, 'color')
+      const whiteArr = FiltersList.methods.filterBy(arr, c.white, 'color')
+
+      expect(redArr).to.have.length(2)
+      expect(whiteArr).to.have.length(1)
+      expect(blueArr).to.have.length(3)
+
+      expect(redArr.filter(v => v.name === `${c.red}_color_1`)).to.be.have.length(1)
+      expect(redArr.filter(v => v.name === `${c.red}_color_2`)).to.be.have.length(1)
+
+      expect(whiteArr.filter(v => v.name === `${c.white}_color_1`)).to.be.have.length(1)
+
+      expect(blueArr.filter(v => v.name === `${c.blue}_color_1`)).to.be.have.length(1)
+      expect(blueArr.filter(v => v.name === `${c.blue}_color_2`)).to.be.have.length(1)
+      expect(blueArr.filter(v => v.name === `${c.blue}_color_3`)).to.be.have.length(1)
+
+    })
   })
 
   // TODO (S.Panfilov)
