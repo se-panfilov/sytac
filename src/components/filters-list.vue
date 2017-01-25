@@ -69,7 +69,7 @@
         this.$emit('changed', this.filter)
       },
       filterBy (arr, val, field) {
-//        if (!arr || !val || !field) throw new Error(`filterBy: params should exist`)
+        if (!arr || !val || !field) throw new Error(`filterBy: params should exist`)
         return arr.filter(v => v[field] === val)
       },
       filterByColors (arr, val) {
@@ -78,14 +78,13 @@
       },
       filterColorsBy (arr, val, field) {
 //        if (!arr || !val || !field) throw new Error(`filterColorsBy: params should exist`)
-//        console.info(`${arr}, ${val}, ${field}`)
         console.warn(val)
         return arr.filter(v => v[field] === val)
       },
       getFilteredArr (arr, field, method = 'filterBy') {
 //        if (!arr || !field) throw new Error(`getFilteredArr: params should exist`)
         return (this.filter[field]) ? this[method](arr, this.filter[field], field) : arr
-      },
+      }
     },
     computed: {
       types () {
@@ -103,17 +102,14 @@
         return [''].concat(result)
       },
       filteredTypes () {
-//        const filteredArr = this.getFilteredByValueArr('color', 'filterByColors')
         const filteredArr = this.getFilteredArr(this.source, 'color', 'filterByColors')
         return this.getFilteredArr(filteredArr, 'brand')
       },
       filteredBrands () {
-//        const filteredArr = this.getFilteredByValueArr('color', 'filterByColors')
         const filteredArr = this.getFilteredArr(this.source, 'color', 'filterByColors')
         return this.getFilteredArr(filteredArr, 'type')
       },
       filteredColors () {
-//        const filteredArr = this.getFilteredByValueArr('type', 'filterBy')
         const filteredArr = this.getFilteredArr(this.source, 'type', 'filterBy')
         return this.getFilteredArr(filteredArr, 'brand', 'filterColorsBy')
       }
