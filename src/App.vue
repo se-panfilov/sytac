@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <main-header class="header"></main-header>
+    <main-header class="header" :message="message"></main-header>
     <div class="container">
       <div class="columns">
         <section class="column is-one-third">
@@ -28,7 +28,8 @@
     data () {
       return {
         selected: {},
-        vehicleData: []
+        vehicleData: [],
+        message: null
       }
     },
     mounted () {
@@ -43,6 +44,7 @@
         return this.getSourceData().then(this.onDataSuccess, this.onDataError)
       },
       getSourceData () {
+        this.message = this.getMessage()
         return new Promise((resolve, reject) => {
           VehicleData.fetchData((err, data) => {
             if (err) return reject(err)
@@ -50,14 +52,21 @@
           })
         })
       },
+      getMessage (text = '') {
+        return `Fetching data... ${text}`
+      },
       onDataError (err) {
-        // TODO (S.Panfilov) show error
         console.error(err)
-        setTimeout(() => this.loadData(), 3000)
+        const delay = 3
+        this.message = this.getMessage(`Failed. Retry in ${delay} seconds`)
+        setTimeout(() => this.loadData(), delay * 1000)
       },
       onDataSuccess (data) {
         this.vehicleData = data
-//        this.data.vehicleData = []
+        this.message = this.getMessage('Success!')
+        setTimeout(() => {
+          this.message = null
+        }, 3000)
       }
     },
     components: {
@@ -114,10 +123,6 @@
     *
       font-family 'Roboto', sans-serif
       font-weight 500
-
-  //#app
-  //padding-left 15px
-  //padding-right 15px
 
   input[type="search"]
     -moz-appearance textfield
