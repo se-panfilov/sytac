@@ -60,8 +60,9 @@
       }
     },
     methods: {
-      getUniq (a) {
-        return [...new Set(a)]
+      getUniq (arr) {
+        if (!arr) throw new Error(`getUniq: array is mandatory`)
+        return [...new Set(arr)]
       },
       onSelect (event, type) {
         this.filter[type] = event.target.value
