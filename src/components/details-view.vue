@@ -42,4 +42,5 @@
     .color-text-preview
       vertical-align super
       display inline-block
+      font-style italic
 </style>
