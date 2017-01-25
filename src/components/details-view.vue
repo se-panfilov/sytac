@@ -7,6 +7,7 @@
            v-text="selected.brand"></div>
       <div class="subtitle details__item">
         <span class="color-preview"
+              v-show="selected.color"
               :style="'background-color: ' + selected.color"></span>
         <span class="color-text-preview" v-text="selected.color"></span>
       </div>
@@ -36,7 +37,7 @@
       display inline-block
       height 35px
       width 35px
-      border 1px solid transparent
+      border 1px solid #e0e0e0
       border-radius 3px
     .color-text-preview
       vertical-align super
