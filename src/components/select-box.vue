@@ -1,18 +1,14 @@
 <template>
   <div class="control">
     <label class="label" :for="name" v-text="label"></label>
-    <div class="control is-grouped">
-      <div class="control">
-        <div class="select">
-          <select :name="name" id="name" v-model="model" @change="onSelect">
-            <!--<option value="" selected></option>-->
-            <option :value="item" v-for="item in source" v-text="item"></option>
-          </select>
-        </div>
+    <div class="control has-addons">
+      <div class="select is-expanded">
+        <select :name="name" id="name" v-model="model" @change="onSelect">
+          <!--<option value="" selected></option>-->
+          <option :value="item" v-for="item in source" v-text="item"></option>
+        </select>
       </div>
-      <div class="control">
-        <button type="button" class="button" @click="onReset">x</button>
-      </div>
+      <button type="button" class="button" @click="onReset">x</button>
     </div>
   </div>
 </template>

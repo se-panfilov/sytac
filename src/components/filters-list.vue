@@ -1,23 +1,41 @@
 <template>
-  <section>
-    <select-box :source="types"
-                name="types"
-                label="Types"
-                v-on:item-selected="onSelect($event, 'type')"
-    ></select-box>
-    <span v-text="types.length"></span>
-    <select-box :source="brands"
-                name="brands"
-                label="Brands"
-                v-on:item-selected="onSelect($event, 'brand')"
-    ></select-box>
-    <span v-text="brands.length"></span>
-    <select-box :source="colors"
-                name="colors"
-                label="Colors"
-                v-on:item-selected="onSelect($event, 'color')"
-    ></select-box>
-    <span v-text="colors.length"></span>
+  <section class="section filter-list">
+    <div class="container filter-list__elem">
+      <select-box :source="types"
+                  name="types"
+                  class="filter-list__select-box"
+                  label="Types"
+                  v-on:item-selected="onSelect($event, 'type')"
+      ></select-box>
+      <div class="filter-list__items-count">
+        <span class="tag is-light is-medium"
+              v-text="'x' + (types.length - 1)"></span>
+      </div>
+    </div>
+    <div class="container">
+      <select-box :source="brands"
+                  name="brands"
+                  class="filter-list__select-box"
+                  label="Brands"
+                  v-on:item-selected="onSelect($event, 'brand')"
+      ></select-box>
+      <div class="filter-list__items-count">
+        <span class="tag is-light is-medium"
+              v-text="'x' + (brands.length - 1) "></span>
+      </div>
+    </div>
+    <div class="container">
+      <select-box :source="colors"
+                  name="colors"
+                  class="filter-list__select-box"
+                  label="Colors"
+                  v-on:item-selected="onSelect($event, 'color')"
+      ></select-box>
+      <div class="filter-list__items-count">
+        <span class="tag is-light is-medium"
+              v-text="'x' + (colors.length - 1)"></span>
+      </div>
+    </div>
   </section>
 </template>
 
@@ -53,52 +71,44 @@
         return arr.filter(v => v[field] === val)
       },
       filterByColors (arr, val) {
-        return arr.filter(v => v.colors === val.indexOf(val) > -1)
+        return arr.filter(v => v.colors.indexOf(val) > -1)
       },
       filterColorsBy (arr, val, field) {
         return arr.filter(v => v[field] === val)
       },
-      getFilteredByColorArr () {
-//        return (this.filter.color) ? this.filterByColors(this.source, this.filter.color) : this.source
-        return this.getFilteredArr(this.source, 'color', 'filterByColors')
-      },
-      getColorsFilteredByTypeArr () {
-//        return (this.filter.type) ? this.filterColorsBy(this.source, this.filter.type, 'type') : this.source
-        return this.getFilteredArr(this.source, 'type', 'filterColorsBy')
-      },
       getFilteredArr (arr, field, method = 'filterBy') {
         return (this.filter[field]) ? this[method](arr, this.filter[field], field) : arr
+      },
+      getFilteredByColorArr () {
+        return this.getFilteredArr(this.source, 'color', 'filterByColors')
       }
     },
     computed: {
       types () {
-        return this.getUniq(this.filteredTypes.map(v => v.type))
+        const result = this.getUniq(this.filteredTypes.map(v => v.type))
+        return [''].concat(result)
+      },
+      brands () {
+        const result = this.getUniq(this.filteredBrands.map(v => v.brand))
+        return [''].concat(result)
       },
       colors () {
         const arrOfArr = this.filteredColors.map(v => v.colors)
         const mergedArr = [].concat.apply([], arrOfArr)
-        return this.getUniq(mergedArr)
-      },
-      brands () {
-        return this.getUniq(this.filteredBrands.map(v => v.brand))
+        const result = this.getUniq(mergedArr)
+        return [''].concat(result)
       },
       filteredTypes () {
         const filteredByColorArr = this.getFilteredByColorArr()
-        const result = this.getFilteredArr(filteredByColorArr, 'brand')
-//        console.info(result)
-        return result
-      },
-      filteredColors () {
-        const filteredByTypeArr = this.getColorsFilteredByTypeArr()
-        const result = this.getFilteredArr(filteredByTypeArr, 'brand', 'filterColorsBy')
-//        console.info(result)
-        return result
+        return this.getFilteredArr(filteredByColorArr, 'brand')
       },
       filteredBrands () {
         const filteredByColorArr = this.getFilteredByColorArr()
-        const result = this.getFilteredArr(filteredByColorArr, 'type')
-//        console.info(result)
-        return result
+        return this.getFilteredArr(filteredByColorArr, 'type')
+      },
+      filteredColors () {
+        const filteredByTypeArr = this.getFilteredArr(this.source, 'type', 'filterColorsBy')
+        return this.getFilteredArr(filteredByTypeArr, 'brand', 'filterColorsBy')
       }
     },
     components: {
@@ -108,5 +118,10 @@
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus" scoped>
-
+  .filter-list
+    &__select-box
+      display inline-block
+    &__items-count
+      display inline-block
+      vertical-align middle
 </style>

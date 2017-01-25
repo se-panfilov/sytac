@@ -5,7 +5,7 @@
       <div class="columns">
         <section class="column is-one-third">
           <transition name="in-out-translate-fade" mode="out-in" appear>
-            <filters-list :source="vehicleData" v-on:changed="onChanged"></filters-list>
+            <filters-list :source="vehicleData" v-on:changed="onChanged" class="box"></filters-list>
           </transition>
         </section>
         <section class="column">
