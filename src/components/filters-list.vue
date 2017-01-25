@@ -48,7 +48,7 @@
       return {
         filter: {
           type: null,
-          brand: [],
+          brand: null,
           color: null
         }
       }
