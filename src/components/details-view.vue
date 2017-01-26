@@ -1,11 +1,11 @@
 <template>
   <section class="content box details">
     <section class="hero details__elem">
-      <div class="subtitle details__item"
+      <div class="subtitle details__item -type"
            v-text="selected.type"></div>
-      <div class="title details__item"
+      <div class="title details__item -brand"
            v-text="selected.brand"></div>
-      <div class="subtitle details__item">
+      <div class="subtitle details__item -color">
         <span class="color-preview"
               v-show="selected.color"
               :style="'background-color: ' + selected.color"></span>
