@@ -14,7 +14,11 @@
                   v-text="item"></option>
         </select>
       </div>
-      <button type="button" :id="name + '-btn'" class="button select-box__button" @click="onReset">x</button>
+      <button type="button"
+              :id="name + '-btn'"
+              class="button select-box__button"
+              :class="{'is-primary': !!model}"
+              @click="onReset">x</button>
     </div>
   </div>
 </template>
@@ -51,5 +55,7 @@
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus" scoped>
-
+  .select-box
+    &__select
+      min-width 200px
 </style>

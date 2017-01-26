@@ -114,7 +114,7 @@
     height 100%
 
   body
-    background-color #FFF
+    background-color #fbfbfb
     color #3c3c3c
     font-family 'Roboto', sans-serif
     font-weight 500

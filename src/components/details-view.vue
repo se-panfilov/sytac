@@ -1,6 +1,6 @@
 <template>
   <section class="content box details">
-    <section class="hero details__elem">
+    <section class="hero has-text-centered details__elem">
       <div class="subtitle details__item -type"
            v-text="selected.type"></div>
       <div class="title details__item -brand"
@@ -33,6 +33,9 @@
 
 <style lang="stylus" rel="stylesheet/stylus" scoped>
   .details
+    box-shadow 2px 2px 3px rgba(10, 10, 10, 0.1)
+    border 1px solid #dfdfdf
+    height 100%
     .color-preview
       display inline-block
       height 35px
@@ -43,4 +46,8 @@
       vertical-align super
       display inline-block
       font-style italic
+
+    .title
+      font-size 3rem
+      font-weight 400
 </style>

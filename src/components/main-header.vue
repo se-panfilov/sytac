@@ -1,7 +1,7 @@
 <template>
-  <div class="container">
-    <div class="nav">
-      <div class="nav-left">
+  <div class="nav has-shadow main-header">
+    <div class="container main-header__container">
+      <div class="nav-left main-header__brand">
         <span class="nav-item is-brand">Trafficeister</span>
       </div>
       <div class="nav-right">
@@ -26,5 +26,6 @@
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus" scoped>
-
+  .main-header
+    margin-bottom 15px
 </style>

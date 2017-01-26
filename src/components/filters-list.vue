@@ -117,6 +117,8 @@
 
 <style lang="stylus" rel="stylesheet/stylus" scoped>
   .filter-list
+    box-shadow 2px 2px 3px rgba(10, 10, 10, 0.1)
+    border 1px solid #dfdfdf
     &__select-box
       display inline-block
     &__items-count
