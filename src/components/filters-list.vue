@@ -8,11 +8,10 @@
                   v-on:item-selected="onSelect($event, 'type')"
       ></select-box>
       <div class="filter-list__items-count">
-        <span class="tag is-light is-medium"
-              v-text="'x' + (types.length - 1)"></span>
+        <span class="filter-list__items-count-text" v-text="'total:' + (types.length - 1)"></span>
       </div>
     </div>
-    <div class="container">
+    <div class="container filter-list__elem">
       <select-box :source="brands"
                   name="brands"
                   class="filter-list__select-box"
@@ -20,11 +19,10 @@
                   v-on:item-selected="onSelect($event, 'brand')"
       ></select-box>
       <div class="filter-list__items-count">
-        <span class="tag is-light is-medium"
-              v-text="'x' + (brands.length - 1) "></span>
+        <span class="filter-list__items-count-text" v-text="'total:' + (brands.length - 1)"></span>
       </div>
     </div>
-    <div class="container">
+    <div class="container filter-list__elem">
       <select-box :source="colors"
                   name="colors"
                   class="filter-list__select-box"
@@ -32,8 +30,7 @@
                   v-on:item-selected="onSelect($event, 'color')"
       ></select-box>
       <div class="filter-list__items-count">
-        <span class="tag is-light is-medium"
-              v-text="'x' + (colors.length - 1)"></span>
+        <span class="filter-list__items-count-text" v-text="'total:' + (colors.length - 1)"></span>
       </div>
     </div>
   </section>
@@ -119,9 +116,15 @@
   .filter-list
     box-shadow 2px 2px 3px rgba(10, 10, 10, 0.1)
     border 1px solid #dfdfdf
+    &__elem
+      margin-bottom 15px
     &__select-box
       display inline-block
+      margin-bottom 0
     &__items-count
-      display inline-block
+      display block
       vertical-align middle
+    &__items-count
+      font-style italic
+      color #999999
 </style>
