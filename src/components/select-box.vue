@@ -4,7 +4,7 @@
     <div class="control has-addons select-box__ctrl-group">
       <div class="select is-expanded select-box__select-container">
         <select :name="name"
-                id="name"
+                :id="name"
                 class="select-box__select"
                 v-model="model"
                 @change="onSelect">
