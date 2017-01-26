@@ -9,7 +9,6 @@ const elements = {
 
 function selectOption (browser, select, val) {
   browser.click(`${select} option[value="${val}"]`)
-  // browser.click(`select[name="types"] option[value="car"]`)
 }
 
 function initPage (browser) {
@@ -24,52 +23,114 @@ function initPage (browser) {
 
 module.exports = {
   '@tags': ['Main'],
-  'default state': function (browser) {
-    browser = initPage(browser)
-    browser.expect.element('#app').to.be.present.before(1000)
-    browser.expect.element(elements.typesSelect).to.be.a('select')
-    browser.expect.element(elements.brandsSelect).to.be.a('select')
-    browser.expect.element(elements.colorsSelect).to.be.a('select')
-
-    browser.end()
-  },
-  'can select type': function (browser) {
+  // 'default state': function (browser) {
+  //   browser = initPage(browser)
+  //   browser.expect.element('#app').to.be.present.before(1000)
+  //   browser.expect.element(elements.typesSelect).to.be.a('select')
+  //   browser.expect.element(elements.brandsSelect).to.be.a('select')
+  //   browser.expect.element(elements.colorsSelect).to.be.a('select')
+  //
+  //   browser.end()
+  // },
+  // 'can select type': function (browser) {
+  //   browser = initPage(browser)
+  //   const val = 'car'
+  //
+  //   //Wait for async data upload
+  //   browser.expect.element(`${elements.typesSelect} option[value="${val}"]`).to.be.present.before(10000)
+  //   browser.expect.element('.details').text.to.equal('')
+  //
+  //   selectOption(browser, elements.typesSelect, val)
+  //
+  //   browser.expect.element('.details').text.to.equal(val)
+  //   browser.end()
+  // },
+  // 'can reset type': function (browser) {
+  //   browser = initPage(browser)
+  //   const val = 'car'
+  //
+  //   browser.expect.element(`${elements.typesSelect} option[value="${val}"]`).to.be.present.before(10000)
+  //   browser.expect.element('.details').text.to.equal('')
+  //   selectOption(browser, elements.typesSelect, val)
+  //   browser.expect.element('.details').text.to.equal(val)
+  //
+  //   browser.click(`button[id="types-btn"]`)
+  //   browser.expect.element('.details').text.to.equal('')
+  //
+  //   browser.end()
+  // },
+  'can filter by type': function (browser) {
     browser = initPage(browser)
     const val = 'car'
 
-    //Wait for async data upload
+    const plane = 'Boeing 787 Dreamliner'
+    const color = 'yellow'
+
     browser.expect.element(`${elements.typesSelect} option[value="${val}"]`).to.be.present.before(10000)
-    browser.expect.element('.details').text.to.equal('')
+    browser.expect.element(`${elements.brandsSelect} option[value="${plane}"]`).to.be.present
+    browser.expect.element(`${elements.colorsSelect} option[value="${color}"]`).to.be.present
 
     selectOption(browser, elements.typesSelect, val)
 
-    browser.expect.element('.details').text.to.equal(val)
+    browser.expect.element(`${elements.brandsSelect} option[value="${plane}"]`).to.not.present
+    browser.expect.element(`${elements.colorsSelect} option[value="${color}"]`).to.not.present
+
     browser.end()
   },
-  'can select color': function (browser) {
-    browser = initPage(browser)
-    const val = 'black'
-
-    //Wait for async data upload
-    browser.expect.element(`${elements.colorsSelect} option[value="${val}"]`).to.be.present.before(10000)
-    browser.expect.element('.details').text.to.equal('')
-
-    selectOption(browser, elements.colorsSelect, val)
-
-    browser.expect.element('.details').text.to.equal(val)
-    browser.end()
-  },
-  'can select brand': function (browser) {
-    browser = initPage(browser)
-    const val = 'Bugatti Veyron'
-
-    //Wait for async data upload
-    browser.expect.element(`${elements.brandsSelect} option[value="${val}"]`).to.be.present.before(10000)
-    browser.expect.element('.details').text.to.equal('')
-
-    selectOption(browser, elements.brandsSelect, val)
-
-    browser.expect.element('.details').text.to.equal(val)
-    browser.end()
-  }
+  // 'can select color': function (browser) {
+  //   browser = initPage(browser)
+  //   const val = 'black'
+  //
+  //   browser.expect.element(`${elements.colorsSelect} option[value="${val}"]`).to.be.present.before(10000)
+  //   browser.expect.element('.details').text.to.equal('')
+  //
+  //   selectOption(browser, elements.colorsSelect, val)
+  //
+  //   browser.expect.element('.details').text.to.equal(val)
+  //   browser.end()
+  // },
+  // 'can reset color': function (browser) {
+  //   browser = initPage(browser)
+  //   const val = 'black'
+  //
+  //   browser.expect.element(`${elements.colorsSelect} option[value="${val}"]`).to.be.present.before(10000)
+  //   browser.expect.element('.details').text.to.equal('')
+  //
+  //   selectOption(browser, elements.colorsSelect, val)
+  //
+  //   browser.expect.element('.details').text.to.equal(val)
+  //
+  //   browser.click(`button[id="colors-btn"]`)
+  //   browser.expect.element('.details').text.to.equal('')
+  //
+  //   browser.end()
+  // },
+  // 'can select brand': function (browser) {
+  //   browser = initPage(browser)
+  //   const val = 'Bugatti Veyron'
+  //
+  //   browser.expect.element(`${elements.brandsSelect} option[value="${val}"]`).to.be.present.before(10000)
+  //   browser.expect.element('.details').text.to.equal('')
+  //
+  //   selectOption(browser, elements.brandsSelect, val)
+  //
+  //   browser.expect.element('.details').text.to.equal(val)
+  //   browser.end()
+  // },
+  // 'can reset brand': function (browser) {
+  //   browser = initPage(browser)
+  //   const val = 'Bugatti Veyron'
+  //
+  //   browser.expect.element(`${elements.brandsSelect} option[value="${val}"]`).to.be.present.before(10000)
+  //   browser.expect.element('.details').text.to.equal('')
+  //
+  //   selectOption(browser, elements.brandsSelect, val)
+  //
+  //   browser.expect.element('.details').text.to.equal(val)
+  //
+  //   browser.click(`button[id="brands-btn"]`)
+  //   browser.expect.element('.details').text.to.equal('')
+  //
+  //   browser.end()
+  // },
 }

@@ -14,7 +14,7 @@
                   v-text="item"></option>
         </select>
       </div>
-      <button type="button" class="button select-box__button" @click="onReset">x</button>
+      <button type="button" :id="name + '-btn'" class="button select-box__button" @click="onReset">x</button>
     </div>
   </div>
 </template>
