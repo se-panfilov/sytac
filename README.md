@@ -22,6 +22,11 @@ npm run dev
 npm run unit
 ```
 
+##Launch e2e tests
+``` bash
+npm run e2e
+```
+
 
 go to [http://localhost:8080/][4]
 
